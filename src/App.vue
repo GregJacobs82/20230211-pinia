@@ -32,6 +32,8 @@ const handleSubmit = () => {
             <div>
                 <ul>
                     <li v-for="task in taskStore.tasks" :key="task.id">
+                        <button @click="taskStore.toggleFav(task.id)">fav</button> |
+                        <button @click="taskStore.deleteTask(task.id)">del</button> -
                         {{ task.title }}
                     </li>
                 </ul>
