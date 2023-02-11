@@ -19,11 +19,6 @@
       "id": 4,
       "title": "buy some roses for valentines day",
       "isFav": true
-    },
-    {
-      "title": "some new task",
-      "isFav": false,
-      "id": 5
     }
   ]
 }
