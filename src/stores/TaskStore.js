@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia';
+const taskApi = 'http://localhost:3002/tasks';
 
 export const useTaskStore = defineStore('taskStore', {
     state: () => ({
@@ -27,17 +28,27 @@ export const useTaskStore = defineStore('taskStore', {
         async fetchTaskData() {
             this.loading = true;
 
-            const res = await fetch('http://localhost:3002/tasks');
+            const res = await fetch(taskApi);
             this.tasks = await res.json();
 
             // todo: remove timeout if you don't want to simulate loading data
             setTimeout(() => {
                 this.loading = false;
-            }, 2000);
+            }, 1000);
         },
 
-        addTask(task) {
+        async addTask(task) {
             this.tasks.push(task);
+
+            const res = await fetch(taskApi, {
+                method: 'POST',
+                body: JSON.stringify(task),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            if (res.error) {
+                console.error(res.error);
+            }
         },
         deleteTask(id) {
             this.tasks = this.tasks.filter(t => {
