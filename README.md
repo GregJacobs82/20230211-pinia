@@ -27,3 +27,14 @@ npm run dev
 ```sh
 npm run build
 ```
+
+---
+
+### Uses Json-Server for data
+```sh
+npm dev-json-server
+```
+- OR: Manually Run it with:
+```sh
+json-server -w data/db.json --port 3002
+```

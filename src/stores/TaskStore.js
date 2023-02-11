@@ -1,15 +1,10 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 
 export const useTaskStore = defineStore('taskStore', {
     state: () => ({
-        tasks: [
-            { id: 1, title: 'buy some milk', isFav: false },
-            { id: 2, title: 'play gloomhaven', isFav: true },
-            { id: 3, title: 'go to costco', isFav: false },
-            { id: 4, title: 'buy some roses for valentines day', isFav: true },
-        ],
-
-        name: 'Yoshi',
+        loading: false,
+        tasks: [],
+        name: 'Greg Jacobs',
     }),
 
     getters: {
@@ -29,6 +24,18 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     actions: {
+        async fetchTaskData() {
+            this.loading = true;
+
+            const res = await fetch('http://localhost:3002/tasks');
+            this.tasks = await res.json();
+
+            // todo: remove timeout if you don't want to simulate loading data
+            setTimeout(() => {
+                this.loading = false;
+            }, 2000);
+        },
+
         addTask(task) {
             this.tasks.push(task);
         },

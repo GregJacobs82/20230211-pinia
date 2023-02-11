@@ -1,12 +1,12 @@
 <script setup>
+import {onMounted, ref} from 'vue';
 import { useTaskStore } from '@/stores/TaskStore';
+
 const taskStore = useTaskStore();
+onMounted(() => {
+    taskStore.fetchTaskData();
+});
 
-
-
-
-
-import { ref } from 'vue';
 const newTask = ref('');
 const handleSubmit = () => {
     if (newTask.value.length > 0) {
@@ -18,12 +18,13 @@ const handleSubmit = () => {
         newTask.value = '';
     }
 }
-
-
 </script>
 
 <template>
-    <div>
+    <div v-if="taskStore.loading">
+        Loading...
+    </div>
+    <div v-else>
         <h1>Home</h1>
         <div>Name: {{ taskStore.name }}</div>
         <hr style="margin-top:30px;margin-bottom:30px;">

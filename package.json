@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev-json-server": "json-server -w data/db.json --port 3002",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "json-server": "^0.17.1",
     "pinia": "^2.0.28",
     "vue": "^3.2.45"
   },
