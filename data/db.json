@@ -19,6 +19,21 @@
       "id": 4,
       "title": "buy some roses for valentines day",
       "isFav": true
+    },
+    {
+      "title": "Another task here",
+      "isFav": false,
+      "id": 5
+    },
+    {
+      "title": "I love doing this",
+      "isFav": true,
+      "id": 6
+    },
+    {
+      "title": "I think it works",
+      "isFav": true,
+      "id": 7
     }
   ]
 }

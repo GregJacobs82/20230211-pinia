@@ -63,9 +63,19 @@ export const useTaskStore = defineStore('taskStore', {
                 console.error(res.error);
             }
         },
-        toggleFav(id) {
+        async toggleFav(id) {
             const task = this.tasks.find(t => t.id === id);
             task.isFav = !task.isFav;
+
+            const res = await fetch(`${taskApi}/${id}`, {
+                method: 'PATCH',
+                body: JSON.stringify({isFav: task.isFav}),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            if (res.error) {
+                console.error(res.error);
+            }
         },
     },
 });
